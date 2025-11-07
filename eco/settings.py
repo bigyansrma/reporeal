@@ -13,7 +13,7 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 from pathlib import Path
 import dj_database_url
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['reporeal.onrender.com', 'localhost', '127.0.0.1']
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -24,14 +24,19 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
 import os
-SECRET_KEY = 'django-insecure-b$5-4vldc^*6&dzwv9pjvvvk2#@6!^wj5_+hp+ul+)6pq0u(qh'
+SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure-dev-key')
+DEBUG = os.environ.get('DEBUG', 'False') == 'True'
 # SECRET_KEY = os.environ.get('SECRET_KEY', 'fallback-secret-key-for-dev')
 # SECURITY WARNING: don't run with debug turned on in production!
 
 # DEBUG = False
 # ALLOWED_HOSTS = ['your-app-name.onrender.com']
-DEBUG = True
-ALLOWED_HOSTS = []
+# DEBUG = True
+ALLOWED_HOSTS = [
+    'reporeal.onrender.com',  # your deployed domain
+    'localhost',              # for local testing
+    '127.0.0.1',              # for local testing
+]
 
 
 # Application definition
